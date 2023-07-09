@@ -1,6 +1,25 @@
 # XPert: Peripheral Circuit & Neural Architecture Co-search for Area and Energy-efficient Xbar-based Computing
 The hardware-efficiency and accuracy of Deep Neural Networks (DNNs) implemented on In-memory Computing (IMC) architectures primarily depend on the DNN architecture and the peripheral circuit parameters. It is therefore essential to holistically co-search the network and peripheral parameters to achieve optimal performance. To this end, we propose XPert, which co-searches network architecture in tandem with peripheral parameters such as the type and precision of analog-to-digital converters, crossbar column sharing and the layer-specific input precision using an optimization-based design space exploration. Compared to VGG16 baselines, XPert achieves 10.24x (4.7x) lower EDAP, 1.72x (1.62x) higher TOPS/W,1.93x (3x) higher TOPS/mm2 at 92.46% (56.7%) accuracy for CIFAR10 (TinyImagenet) datasets. The paper is available at https://arxiv.org/abs/2303.17646
 
+# Instructions for running Phase1-Cosearch
+
+## Running the Co-search
+Run the Code using 
+```
+python Phase1_VGG16_backbone.py with the variables described below.
+```
+## Variable Description 
+
+```
+--lr: Learning Rate
+--hw_params: Tuple of #PEs per Tile, #Crossbars per PE, #Tiles, Crossbar Size
+--target_latency: Target Latency
+--target_area: Target Area Constraint (mm^2)
+--epochs: Total Number of Search Epochs
+--wt_prec: Weight Precision
+--cellbit: Number of bits per NVM device
+--area_tolerance: The uncerainity in the on-chip area tolerated in the searched model. 
+```
 # Instructions for XPertSim C++ Evaluation
 
 ## Step 1: Create the Network_custom.csv file
