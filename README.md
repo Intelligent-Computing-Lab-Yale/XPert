@@ -43,4 +43,6 @@ Like Network_custom.csv we append each layer with ('C', 64, 512, 3, 'same', 8).
 Run the inference.py using "python inference.py --model custom"
 
 
+# Acknowledgement
+This repository is adapted from the Neurosim platform https://github.com/neurosim/DNN_NeuroSim_V1.3.
 
