@@ -243,9 +243,7 @@ void RowDecoder::CalculateArea(double _newHeight, double _newWidth, AreaModify _
 				}
 			}
 		}
-		cout << "Nice only" << endl;
 		area = height * width;
-        cout << "decoder " <<  area << endl;
         // Modify layout
 		newHeight = _newHeight;
 		newWidth = _newWidth;
