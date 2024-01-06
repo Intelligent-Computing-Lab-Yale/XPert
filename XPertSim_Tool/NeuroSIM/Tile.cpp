@@ -326,7 +326,6 @@ vector<double> TileCalculateArea(double numPE, double peSize, bool NMTile, doubl
 		areaResults.push_back(hTreeCM->area);
 		areaResults.push_back(PEareaADC*numPE);
 		areaResults.push_back(PEareaAccum*numPE + accumulationCM->area);
-		cout << "area other in each tile " << PEareaOther*numPE << " " << inputBufferCM->area << " " << outputBufferCM->area << " " << areareLu << " " << areasigmoid << endl;
 		areaResults.push_back(PEareaOther*numPE + inputBufferCM->area + outputBufferCM->area + areareLu + areasigmoid);
 		areaResults.push_back(PEareaArray*numPE);
 	}
