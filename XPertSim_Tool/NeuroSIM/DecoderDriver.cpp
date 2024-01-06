@@ -159,7 +159,6 @@ void DecoderDriver::CalculateArea(double _newHeight, double _newWidth, AreaModif
 				width = wUnit * numOutput;
 			}
 		}
-        cout << "Noice only" << endl;
 		area = height * width;
 
 		// Modify layout
