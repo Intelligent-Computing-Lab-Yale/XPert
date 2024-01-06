@@ -57,7 +57,7 @@ class compute_latency(nn.Module):
 k_space = [3]
 # ch_space = [16, 32, 64, 128, 256, 512]
 ch_space = [64, 128, 256, 512]
-f_space = [64] #, 16, 8, 4]
+f_space = [32] #, 16, 8, 4]
 p_space = [1, 2, 4, 8, 32, 64]
 adc_share_space = [2, 4, 8, 16, 32]
 adc_type_space = [1, 2]
@@ -519,7 +519,7 @@ for i in arch:
     l_c += 1
     in_ch = int(i[1].item())
 
-print(f'latency {best_latency.item()},\nbest_adc_arch {best_adc_arch}, \nbest_ADC_area {best_area}, \nspeedup {best_par}, \ncolumn_sharing {best_mux} \nbest_t_use {best_tile_use} \nbest_score {best_score} \n adc_mean {best_adc_mean} mux_mean {best_mux_mean} tile_sum {best_tile_sum}')
+print(f'latency {best_latency.item()},\nbest_adc_arch {best_adc_arch}, \nbest_area {best_area}, \nspeedup {best_par}, \ncolumn_sharing {best_mux} \nbest_t_use {best_tile_use} \nbest_score {best_score} \n adc_mean {best_adc_mean} mux_mean {best_mux_mean} tile_sum {best_tile_sum}')
 # torch.save(arch_param_epoch, './cifar10/arch_param_epoch.pt')
 # torch.save(lat_err_list, './lat_err_list.pt')
 # torch.save(err_list, './err_list.pt')
