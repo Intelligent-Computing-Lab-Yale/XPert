@@ -84,8 +84,6 @@ vector<int> ChipDesignInitialize(InputParameter& inputParameter, Technology& tec
 	int numRowPerSynapse, numColPerSynapse;
 	numRowPerSynapse = param->numRowPerSynapse;
 	numColPerSynapse = param->numColPerSynapse;
-	cout << "numColPerSynapse" << numColPerSynapse << endl;
-	cout << "numRowPerSynapse" << numRowPerSynapse << endl;
 	double numLayer, minCube;
 	
 	// get information of network structure
@@ -114,7 +112,6 @@ vector<int> ChipDesignInitialize(InputParameter& inputParameter, Technology& tec
 		}
 		*numPENM = numPE;
 
-		cout << "npe" << *numPENM << endl;
 		// mark the layers that use novel mapping
 		for (int i=0; i<numLayer; i++) {
 			
@@ -123,7 +120,6 @@ vector<int> ChipDesignInitialize(InputParameter& inputParameter, Technology& tec
 				&&(netStructure[i][2]*netStructure[i][3]*netStructure[i][4]*numRowPerSynapse >= param->numRowSubArray)) {
 				markNM.push_back(1);
 
-				cout << "hello " << i << endl;
 				minCube = pow(2, ceil((double) log2((double) netStructure[i][5]*(double) numColPerSynapse) ) );
 				*maxPESizeNM = max(minCube, (*maxPESizeNM));
 			} else {
@@ -206,7 +202,6 @@ vector<vector<double> > ChipFloorPlan(bool findNumTile, bool findUtilization, bo
 	*numTileRow = 0;
 	*numTileCol = 0;
 
-    cout << "maxPE size " << maxPESizeNM << endl;
 	if (param->novelMapping) {		// Novel Mapping
 		if (maxPESizeNM < 2*param->numRowSubArray) {
 			cout << "ERROR: SubArray Size is too large, which break the chip hierarchey, please decrease the SubArray size! " << endl;
@@ -565,12 +560,6 @@ vector<double> ChipCalculateArea(InputParameter& inputParameter, Technology& tec
 			areaGsigmoid += Gsigmoid->area;
 		}
 	}
-	cout << "Area Tile Only " << area*1e12 << endl;
-    cout << "Area ADC Only " << areaADC*1e12 << endl;
-    cout << "Area IC Only " << areaIC*1e12 << endl;
-    cout << "Area Accum Only " << areaAccum*1e12 << endl;
-    cout << "Area Array Only " << areaArray*1e12 << endl;
-    cout << "Area Other Only " << areaOther*1e12 << endl;
 
 	area += globalBufferArea + GhTree->area + maxPool->area + Gaccumulation->area;
 	areaIC += GhTree->area;
@@ -602,7 +591,6 @@ double ChipCalculatePerformance(InputParameter& inputParameter, Technology& tech
 	
 	// only get performance of single layer
 	int l = layerNumber;
-	cout << "num_bit " << param->numBitInput << endl; 
 	// get weight matrix file Size
 	int weightMatrixRow = netStructure[l][2]*netStructure[l][3]*netStructure[l][4]*numRowPerSynapse;
 	int weightMatrixCol = netStructure[l][5]*numColPerSynapse;
