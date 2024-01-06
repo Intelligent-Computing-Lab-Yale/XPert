@@ -171,11 +171,9 @@ void SubArray::Initialize(int _numRow, int _numCol, double _unitWireRes){  //ini
 				multilevelSAEncoder.Initialize(levelOutput, numCol/numColMuxed);
 			}
 			if (numCellPerSynapse > 1) {
-			    cout << "weight shift adder" << ceil(numCol/numColMuxed) << endl;
 				shiftAddWeight.Initialize(ceil(numCol/numColMuxed), log2(levelOutput), clkFreq, spikingMode, numCellPerSynapse);
 			}
 			if (numReadPulse > 1) {
-			    cout << "input shift adder" << ceil(numCol/numColMuxed) << endl;
 				shiftAddInput.Initialize(ceil(numCol/numColMuxed), log2(levelOutput)+numCellPerSynapse, clkFreq, spikingMode, numReadPulse);
 			}
 			
@@ -278,7 +276,6 @@ void SubArray::Initialize(int _numRow, int _numCol, double _unitWireRes){  //ini
 			}
 
 			slSwitchMatrix.Initialize(COL_MODE, numCol, resTg * numRow, true, false, activityRowRead, activityColWrite, numWriteCellPerOperationMemory, numWriteCellPerOperationNeuro, 1, clkFreq);
-			cout << "ceil(numCol/numColMuxed)   " << ceil(numCol/numColMuxed) << numCol << numColMuxed << endl;
 			if (numColMuxed>1) {
 				mux.Initialize(ceil(numCol/numColMuxed), numColMuxed, resTg, FPGA);       
 				muxDecoder.Initialize(REGULAR_ROW, (int)ceil(log2(numColMuxed)), true, false);
@@ -876,7 +873,6 @@ void SubArray::CalculateLatency(double columnRes, const vector<double> &columnRe
 						multilevelSAEncoder.CalculateLatency(1e20, 1);
 					}				
 					if (CalculateclkFreq) {
-//					    cout << " HELLO PLEASE HELP" << endl;
 						readLatency += MAX(wlNewSwitchMatrix.readLatency + wlSwitchMatrix.readLatency, ((numColMuxed > 1)==true? (mux.readLatency+muxDecoder.readLatency):0));
 						readLatency += colDelay;
 						readLatency += multilevelSenseAmp.readLatency;
@@ -886,7 +882,6 @@ void SubArray::CalculateLatency(double columnRes, const vector<double> &columnRe
 					}
 				}
 				if (!CalculateclkFreq) {
-//				    cout << " PLEASE HELP ONLY" << endl;
 					if (numCellPerSynapse > 1) {
 						shiftAddWeight.CalculateLatency(numColMuxed);	
 					}
@@ -1476,12 +1471,6 @@ void SubArray::PrintProperty() {
 
 	if (cell.memCellType == Type::SRAM) {
 		
-		cout << endl << endl;
-	    cout << "Array:" << endl;
-	    cout << "Area = " << heightArray*1e6 << "um x " << widthArray*1e6 << "um = " << areaArray*1e12 << "um^2" << endl;
-	    cout << "Read Dynamic Energy = " << readDynamicEnergyArray*1e12 << "pJ" << endl;
-	    cout << "Write Dynamic Energy = " << writeDynamicEnergyArray*1e12 << "pJ" << endl;
-		
 		precharger.PrintProperty("precharger");
 		sramWriteDriver.PrintProperty("sramWriteDriver");
 		
@@ -1523,12 +1512,7 @@ void SubArray::PrintProperty() {
 		
 	} else if (cell.memCellType == Type::RRAM || cell.memCellType == Type::FeFET) {
 		
-		cout << endl << endl;
-	    cout << "Array:" << endl;
-	    cout << "Area = " << heightArray*1e6 << "um x " << widthArray*1e6 << "um = " << areaArray*1e12 << "um^2" << endl;
-	    cout << "Read Dynamic Energy = " << readDynamicEnergyArray*1e12 << "pJ" << endl;
-	    cout << "Write Dynamic Energy = " << writeDynamicEnergyArray*1e12 << "pJ" << endl;
-		cout << "Write Latency = " << writeLatencyArray*1e9 << "ns" << endl;
+		
 
 		if (conventionalSequential) {
 			wlDecoder.PrintProperty("wlDecoder");
