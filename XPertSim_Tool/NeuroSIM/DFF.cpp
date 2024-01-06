@@ -109,10 +109,8 @@ void DFF::CalculateArea(double _newHeight, double _newWidth, AreaModify _option)
 			height = hDff * numRowDFF;
 			
 		} else {	// Assume one row of DFF by default
-		    cout << "Else Printed ######################" << endl;
 
 			width = wDff * numDff;
-			cout << "For 64 DFF " << wDff*64*hDff << endl;
 			height = hDff;
 
 		}
