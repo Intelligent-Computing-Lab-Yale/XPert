@@ -103,7 +103,6 @@ void Buffer::CalculateArea(double _newHeight, double _newWidth, AreaModify _opti
 			dff.CalculateArea(NULL, NULL, NONE);
 			wlDecoder.CalculateArea(dff.hDff*ceil((double)numBit/(double)interface_width), NULL, NONE);
 			wlDecoder2.CalculateArea(dff.hDff*ceil((double)64/(double)interface_width), NULL, NONE);
-		    cout << "new Area decoder 64" << wlDecoder2.area << endl;
 			area += dff.area + wlDecoder.area;
 		}
 
