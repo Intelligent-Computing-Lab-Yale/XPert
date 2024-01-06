@@ -179,13 +179,13 @@ vector <double> ela_calc(vector<vector<double> > &netStructure, vector<string> &
 					maxPESizeNM, maxTileSizeCM, numPENM, pipelineSpeedUp,
 					&desiredNumTileNM, &desiredPESizeNM, &desiredNumTileCM, &desiredTileSizeCM, &desiredPESizeCM, &numTileRow, &numTileCol);
 
-	for (int i = 0; i < tileLocaEachLayer[0].size(); i++) {
-            cout << "num_tile" << tileLocaEachLayer[0][i] << " ";
-        }
-    cout << endl;
-    for (int i = 0; i < tileLocaEachLayer[1].size(); i++) {
-            cout << "num_tile" << tileLocaEachLayer[1][i] << " ";
-        }
+	// for (int i = 0; i < tileLocaEachLayer[0].size(); i++) {
+ //            // cout << "num_tile" << tileLocaEachLayer[0][i] << " ";
+ //        }
+ //    // cout << endl;
+ //    for (int i = 0; i < tileLocaEachLayer[1].size(); i++) {
+ //            cout << "num_tile" << tileLocaEachLayer[1][i] << " ";
+ //        }
     ofstream myfile;
     myfile.open ("./example.txt");
     cout << endl;
